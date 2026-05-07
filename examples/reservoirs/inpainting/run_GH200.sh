@@ -10,7 +10,7 @@
 
 # --- environment ----------------------------------------------------------
 # Project env (created with: conda create -n genflows python=3.12 -y && pip install -e .)
-source $WORK/vista/miniforge3/etc/profile.d/conda.sh
+source $WORK/miniforge3/etc/profile.d/conda.sh
 conda activate genflows
 
 # --- DDP rendezvous -------------------------------------------------------
