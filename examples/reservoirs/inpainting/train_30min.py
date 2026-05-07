@@ -1,4 +1,4 @@
-"""~30-min reservoir-inpaint training run on a 3-A100 ls6 node.
+"""~30-min reservoir-inpaint training run on a 3-A100 HPC node.
 
 Subset (50k train / 1.5k val / 1.5k test) for 5 epochs. Tracks per-epoch
 train + val FM loss, plus a final test loss. Saves an EMA-applied

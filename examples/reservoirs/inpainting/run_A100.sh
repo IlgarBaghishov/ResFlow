@@ -5,9 +5,9 @@
 #SBATCH -p gpu-a100
 #SBATCH -t 24:00:00
 #SBATCH -o ll_out_%j
-#SBATCH -A ALLOCATION_NAME  # set to your TACC allocation
+#SBATCH -A ALLOCATION_NAME  # set to your HPC allocation
 
-# Lonestar6 launcher for reservoir well-conditioning (inpainting) training.
+# 3-A100-per-node HPC launcher for reservoir well-conditioning (inpainting) training.
 # 3x A100-40GB per node, 4 nodes default.
 #
 # Sizing (extrapolated from a 3-A100 single-node measurement, BS=32/rank,
@@ -20,8 +20,8 @@
 # (every 5 epochs ≈ every 1.75 h on 4 nodes).
 #
 # To launch:
-#   1. Fill in -A above with your TACC allocation
-#   2. sbatch run_ls6.sh
+#   1. Fill in -A above with your HPC allocation
+#   2. sbatch run_A100.sh
 
 # --- environment ----------------------------------------------------------
 # Project env (created with: conda create -n genflows python=3.12 -y && pip install -e .)
@@ -41,7 +41,7 @@ mkdir -p "$RUN_DIR"
 
 # Absolute path to the training script — independent of where we cd to.
 # NOTE: ${BASH_SOURCE[0]} resolves to SLURM's per-job spool copy of this
-# script (e.g. /var/spool/slurmd/jobNNN/run_ls6.sh), which does not contain
+# script (e.g. /var/spool/slurmd/jobNNN/run_A100.sh), which does not contain
 # train.py. Use $SLURM_SUBMIT_DIR (the dir you ran `sbatch` from) instead.
 TRAIN_PY="$SLURM_SUBMIT_DIR/train.py"
 

@@ -23,8 +23,8 @@ cd examples/reservoirs/inpainting
 
 # Train the well-conditioned inpainting model (auto-downloads dataset to $SCRATCH on first run)
 python train.py                        # single GPU
-sbatch run_ls6.sh                      # 4 nodes × 3 A100s on Lonestar6
-sbatch run_vista.sh                    # 8 nodes × 1 GH200  on Vista
+sbatch run_A100.sh                     # 4 nodes × 3 A100s on a 3-A100-per-node HPC
+sbatch run_GH200.sh                    # 8 nodes × 1 GH200 on a GH200 HPC
 
 # Sample one cube per layer type, with and without 5-well "+"-pattern conditioning
 python sample_30min_demo.py
@@ -126,7 +126,7 @@ Methods decide *when* to drop conditioning and *how* to combine cond/uncond at s
 ```bash
 # 1. Train the FM-inpaint model on 1M cubes
 cd examples/reservoirs/inpainting
-sbatch run_ls6.sh            # or run_vista.sh
+sbatch run_A100.sh           # or run_GH200.sh
 
 # 2. Sample 8-layer-type demo (one cube per type, with and without 5 wells)
 python sample_30min_demo.py

@@ -54,7 +54,7 @@ _SPLIT_FILENAMES = {'train': 'train', 'val': 'validation', 'test': 'test'}
 def _read_parquet(path):
     """pq.read_table that goes through Python's open() instead of pyarrow's
     file handling. Works around an `OSError: [Errno 14] Bad address` from
-    pyarrow when reading parquet directly off TACC's BeeGFS $SCRATCH. The
+    pyarrow when reading parquet directly off some BeeGFS-backed $SCRATCH filesystems. The
     parquet files we touch (splits + per-shard params_slim) are at most a
     few MB, so the buffer copy is free."""
     with open(path, 'rb') as f:

@@ -34,8 +34,8 @@ OUT_DIR = os.environ.get('RESERVOIR_OUT_DIR', 'results')
 
 GRID_SHAPE = (10, 10)            # (ny, nx) blocks
 BLOCK_SHAPE = (64, 64, 32)
-OVERLAPS = [12, 16, 24]
-SEED = 42
+OVERLAPS = [16, 24]
+SEED = int(os.environ.get('RESERVOIR_SEED', 42))
 N_STEPS = 50
 CFG_SCALE = 3.0
 
@@ -43,8 +43,8 @@ CFG_SCALE = 3.0
 # lobes example's [0.2, 0.8] / [0.1, 0.9] normalized ranges).
 WIDTH_NORM_RANGE  = (0.8, 0.2)   # along Y (decrease)
 DEPTH_NORM_RANGE  = (0.6, 0.2)   # along Y (decrease, capped to stay safe)
-ASP_NORM_RANGE    = (0.8, 0.2)   # along Y (decrease)
-AZIMUTH_DEG_RANGE = (20.0, 160.0)  # along X (140-deg fan centered at 90)
+ASP_NORM_RANGE    = (0.7, 0.3)   # along Y (decrease)
+AZIMUTH_DEG_RANGE = (45.0, 135.0)  # along X (140-deg fan centered at 90)
 NTG_FIXED = 0.7                  # same value as lobes example
 
 

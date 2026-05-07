@@ -4,9 +4,9 @@
 #SBATCH -p gh
 #SBATCH -t 36:00:00
 #SBATCH -o ll_out_%j
-#SBATCH -A ALLOCATION_NAME  # set to your TACC allocation
+#SBATCH -A ALLOCATION_NAME  # set to your HPC allocation
 
-# Vista launcher for reservoir well-conditioning (inpainting) training.
+# GH200 HPC launcher for reservoir well-conditioning (inpainting) training.
 
 # --- environment ----------------------------------------------------------
 # Project env (created with: conda create -n genflows python=3.12 -y && pip install -e .)

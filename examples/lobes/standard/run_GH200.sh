@@ -1,22 +1,18 @@
 #!/bin/bash
-#SBATCH -J resflow
-#SBATCH --account=ALLOCATION_NAME  # set to your NERSC project allocation (e.g. xxxxxx_g)
-#SBATCH --constraint=gpu
-#SBATCH --gpus-per-node=4
-#SBATCH --output=slurm_%j.log
-#SBATCH -q regular
-#SBATCH --nodes=4
+#SBATCH -N 2
 #SBATCH --ntasks-per-node=1
-#SBATCH -t 08:00:00
+#SBATCH -p gh-dev
+#SBATCH -t 2:00:00
+#SBATCH -o ll_out
+#SBATCH -A ALLOCATION_NAME  # set to your HPC allocation
 
-pwd; hostname -f; date
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n1)
 MASTER_PORT=29500
 
 date
 srun torchrun \
   --nnodes=$SLURM_NNODES \
-  --nproc_per_node=$SLURM_GPUS_ON_NODE \
+  --nproc_per_node=1 \
   --rdzv_id=$SLURM_JOB_ID \
   --rdzv_backend=c10d \
   --rdzv_endpoint=${MASTER_ADDR}:${MASTER_PORT} \

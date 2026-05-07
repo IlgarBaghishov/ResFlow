@@ -1,13 +1,16 @@
 #!/bin/bash
-#SBATCH -J resflow
-#SBATCH --account=ALLOCATION_NAME  # set to your NERSC project allocation (e.g. xxxxxx_g)
+#SBATCH -J resflow-inpaint
+#SBATCH --account=ALLOCATION_NAME  # set to your HPC allocation
 #SBATCH --constraint=gpu
 #SBATCH --gpus-per-node=4
-#SBATCH --output=slurm_minimal_%j.log
-#SBATCH -q debug
-#SBATCH --nodes=2
+#SBATCH --output=slurm_%j.log
+#SBATCH -q regular
+#SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1
-#SBATCH -t 02:00:00
+#SBATCH -t 08:00:00
+
+source "$(dirname $CONDA_EXE)/../etc/profile.d/conda.sh"
+conda activate genflows
 
 pwd; hostname -f; date
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n1)

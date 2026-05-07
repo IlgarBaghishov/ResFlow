@@ -53,8 +53,8 @@ examples/
         ├── train.py       # Trains FM-inpaint on full 1M cubes; data dir defaults to $SCRATCH
         ├── train_30min.py # ~30-min smoke run on a 3-A100 node (50K subset)
         ├── sample_30min_demo.py  # Demo: 8 layer types × {uncond, 5-well "+"} -> 3 cross-sections
-        ├── run_ls6.sh     # Lonestar6 launcher (4 nodes × 3 A100s)
-        └── run_vista.sh   # Vista launcher (8 nodes × 1 GH200)
+        ├── run_A100.sh    # 3-A100-per-node HPC launcher (4 nodes × 3 A100s)
+        └── run_GH200.sh   # GH200 HPC launcher (8 nodes × 1 GH200)
 
 meanflow_paper_latex/      # LaTeX source for the MeanFlow paper
 meanflow.pdf               # Compiled paper
@@ -110,8 +110,8 @@ cd examples/reservoirs/inpainting
 # Dataset defaults to $SCRATCH/SiliciclasticReservoirs (auto-downloaded
 # on first use). Override: RESERVOIR_DATA_DIR=/path/to/dataset python train.py
 python train.py                    # Single GPU
-sbatch run_ls6.sh                  # Lonestar6 (4 nodes × 3 A100s)
-sbatch run_vista.sh                # Vista (8 nodes × 1 GH200)
+sbatch run_A100.sh                 # 3-A100-per-node HPC (4 nodes × 3 A100s)
+sbatch run_GH200.sh                # GH200 HPC (8 nodes × 1 GH200)
 ```
 The 3-channel inpainting model handles **both** unconditional generation
 (empty mask = 30% of training samples) and well-conditioned generation

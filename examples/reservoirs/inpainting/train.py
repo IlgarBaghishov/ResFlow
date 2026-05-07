@@ -8,7 +8,7 @@ Mirrors examples/lobes/inpainting/train.py but for the reservoir dataset:
     boundary-to-boundary vs truncated, drilling DOWN from z=Z-1)
   - UNet3D in_channels=3 (noisy_x | known_data | mask), out_channels=1
 
-Resumable: rerun the same `sbatch run_vista.sh` and it picks up from
+Resumable: rerun the same `sbatch run_GH200.sh` and it picks up from
 `checkpoints/training_state.pt`. To reset, delete that file.
 """
 import os
@@ -27,7 +27,7 @@ from resflow.utils.training import train_model_inpaint
 
 # Resolution order:
 #   1. RESERVOIR_DATA_DIR (explicit override)
-#   2. $SCRATCH/SiliciclasticReservoirs (works on Vista, Lonestar6, Perlmutter, ...)
+#   2. $SCRATCH/SiliciclasticReservoirs (works on any HPC where $SCRATCH is set)
 #   3. ./SiliciclasticReservoirs (last-resort fallback)
 # Auto-downloaded on first use by ReservoirDataset._ensure_dataset_local
 # (no-op when files are already present), so a single `python train.py` is enough.
@@ -38,7 +38,7 @@ DEFAULT_DATA_DIR = os.environ.get(
     else os.path.abspath('SiliciclasticReservoirs'),
 )
 CHECKPOINT_DIR = 'checkpoints'
-SAVE_EVERY = 5  # checkpoint every 5 epochs (~1.5 h on 8-node Vista)
+SAVE_EVERY = 5  # checkpoint every 5 epochs (~1.5 h on an 8-node GH200 HPC)
 
 
 def main():
